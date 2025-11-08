@@ -386,8 +386,10 @@ export default function CbrDatabase() {
                         <td className="px-2 py-2 text-xs text-black text-center sm:px-4 sm:py-3 sm:text-sm">{data.kelas_sekolah_cbr}</td>
                         <td className="px-2 py-2 text-xs text-black text-center sm:px-4 sm:py-3 sm:text-sm">{getKelasNgaji(data.kelas_sekolah_cbr)}</td>
                         <td className="px-2 py-2 text-right text-xs font-medium sm:px-4 sm:py-3 sm:text-sm">
-                          <Link to={`/dashboard_cbr/crud_cbr/edit_cbr/${data.id}`} className="text-indigo-600 hover:text-indigo-900 mr-2 sm:mr-4">Edit</Link>
-                          <button onClick={() => handleDelete(data.id!)} className="text-red-600 hover:text-red-900">Hapus</button>
+                          <div className="flex justify-end items-center space-x-3">
+                            <Link to={`/dashboard_cbr/crud_cbr/edit_cbr/${data.id}`} className="text-indigo-600 hover:text-indigo-900">Edit</Link>
+                            <button onClick={() => handleDelete(data.id!)} className="text-red-600 hover:text-red-900">Hapus</button>
+                          </div>
                         </td>
                       </tr>
                     ))}

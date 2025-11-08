@@ -1,9 +1,5 @@
 import React, { useState } from "react";
 import { createCbrData } from "~/routes/database/data_cbr";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { id } from "date-fns/locale";
-import { format } from "date-fns";
 import { useNavigate } from "react-router";
 import DashboardHeader from "~/components/DashboardHeader";
 import type { MetaArgs } from "react-router";
@@ -32,10 +28,10 @@ export default function TambahCbr() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleDateChange = (date: Date | null) => {
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
       ...prev,
-      tgl_lahir_cbr: date ? format(date, "yyyy-MM-dd") : "", // Format tanggal ke YYYY-MM-DD string
+      tgl_lahir_cbr: e.target.value, // Langsung gunakan nilai dari input type="date"
     }));
   };
 
@@ -107,18 +103,13 @@ export default function TambahCbr() {
 
               <div>
                 <label htmlFor="tgl_lahir_cbr" className="block text-sm font-medium text-gray-500">Tanggal Lahir</label>
-                <DatePicker
+                <input
+                  type="date"
                   id="tgl_lahir_cbr"
                   name="tgl_lahir_cbr"
-                  selected={formData.tgl_lahir_cbr ? new Date(formData.tgl_lahir_cbr) : null}
+                  value={formData.tgl_lahir_cbr}
                   onChange={handleDateChange}
-                  dateFormat="dd-MM-yyyy"
-                  placeholderText="Hari-Bulan-Tahun"
-                  showMonthDropdown
-                  showYearDropdown
-                  dropdownMode="select"
-                  locale={id}
-                  className="text-black mt-2 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
+                  className="text-black bg-gray-300 mt-2 p-2 block w-35 rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
                 />
               </div>
             </div>
