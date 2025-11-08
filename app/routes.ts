@@ -14,6 +14,10 @@ export default [
     route("dashboard_cbr/cbr_presensi_kegiatan", "routes/dashboard_cbr/cbr_presensi_kegiatan.tsx"),
     route("dashboard_cbr/cbr_laporan", "routes/dashboard_cbr/cbr_laporan.tsx"),
 
+    // CRUD Caberawit
+    route("dashboard_cbr/crud_cbr/tambah_cbr", "routes/dashboard_cbr/crud_cbr/tambah_cbr.tsx"),
+    route("dashboard_cbr/crud_cbr/edit_cbr/:id", "routes/dashboard_cbr/crud_cbr/edit_cbr.tsx"),
+
     // Dashboard Pra-Remaja
     route("dashboard_prj/prj_dashboard", "routes/dashboard_prj/prj_dashboard.tsx"),
     route("dashboard_prj/prj_database", "routes/dashboard_prj/prj_database.tsx"),

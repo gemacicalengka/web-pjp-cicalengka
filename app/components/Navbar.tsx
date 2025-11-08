@@ -33,7 +33,7 @@ const Navbar: React.FC<NavbarProps> = ({
   const hoverTextClass = hoverTextColor.replace('text-', 'hover:text-');
   
   return (
-    <div className={`w-55 bg-white flex flex-col h-screen`}>
+    <div className={`fixed top-0 left-0 w-55 z-50 bg-white flex flex-col h-screen`}>
         <div className={`${headerBgColor} p-4 shadow-lg`}>
             <div className={`text-2xl font-bold text-left text-white`}>{title}</div>
         </div>
