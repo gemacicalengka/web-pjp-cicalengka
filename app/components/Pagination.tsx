@@ -64,7 +64,7 @@ const Pagination: React.FC<PaginationProps> = ({
         {typeof page === 'number' ? (
           <button
             onClick={() => onPageChange(page)}
-            className={`px-3 py-1 border rounded-md text-sm ${
+            className={`px-4 py-2 border rounded-md text-sm ${
               currentPage === page
                 ? 'bg-green-600 text-white border-green-600'
                 : 'bg-white hover:bg-gray-100 border-gray-300 text-black'
@@ -74,7 +74,7 @@ const Pagination: React.FC<PaginationProps> = ({
             {page}
           </button>
         ) : (
-          <span className="px-3 py-1 text-black">...</span>
+          <span className="px-4 py-2 text-black">...</span>
         )}
       </React.Fragment>
     ));
@@ -82,11 +82,11 @@ const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <div className="flex flex-col md:flex-row justify-between items-center mt-4 gap-2">
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-1 mb-2 md:mb-0">
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="px-3 py-1 border border-gray-300 rounded-md text-sm bg-white hover:bg-gray-100 disabled:opacity-50 text-black"
+          className="px-4 py-2 border border-gray-300 rounded-md text-sm bg-white hover:bg-gray-100 disabled:opacity-50 text-black"
         >
           Sebelumnya
         </button>
@@ -94,7 +94,7 @@ const Pagination: React.FC<PaginationProps> = ({
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="px-3 py-1 border border-gray-300 rounded-md text-sm bg-white hover:bg-gray-100 disabled:opacity-50 text-black"
+          className="px-4 py-2 border border-gray-300 rounded-md text-sm bg-white hover:bg-gray-100 disabled:opacity-50 text-black"
         >
           Selanjutnya
         </button>
@@ -115,13 +115,13 @@ const Pagination: React.FC<PaginationProps> = ({
                 handleGoToPage();
               }
             }}
-            className="w-20 px-3 py-1 border border-gray-300 rounded-md text-sm text-black"
+            className="w-full sm:w-20 px-4 py-2 border border-gray-300 rounded-md text-sm text-black"
             placeholder="Halaman"
             aria-label="Nomor halaman"
           />
           <button
             onClick={handleGoToPage}
-            className="px-3 py-1 border border-gray-300 rounded-md text-sm bg-white hover:bg-gray-100 text-black"
+            className="px-4 py-2 border border-gray-300 rounded-md text-sm bg-white hover:bg-gray-100 text-black"
             aria-label="Pergi ke halaman"
           >
             Go

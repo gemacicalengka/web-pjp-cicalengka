@@ -67,9 +67,9 @@ export default function TambahCbr() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <DashboardHeader title="Tambah Data Caberawit" bgColor="bg-green-500" />
-      <div className="p-4 grow">
-        <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold text-black mb-4">Tambah Data Caberawit</h2>
+      <div className="p-4 grow md:pl-64">
+        <div className="w-full md:max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
+          <h2 className="text-xl sm:text-2xl font-bold text-black mb-4">Tambah Data Caberawit</h2>
           {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">{error}</div>}
           {success && <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">{success}</div>}
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -168,7 +168,7 @@ export default function TambahCbr() {
               </div>
             </div>
 
-            <div className="flex justify-end space-x-2">
+            <div className="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-2">
               <button
                 type="button"
                 onClick={() => navigate("/dashboard_cbr/cbr_database")}

@@ -12,12 +12,12 @@ import { faUsers, faMars, faVenus, faChartBar, faBookOpen } from '@fortawesome/f
 // SummaryCard component from dashboard.tsx
 function SummaryCard({ title, value, icon: Icon }: { title: string; value: string; icon: any }) {
   return (
-    <div className="rounded-xl border border-green-300 bg-white p-3">
+    <div className="rounded-xl border border-green-300 bg-white p-3 sm:p-4">
       <div className="flex items-center gap-2">
         <FontAwesomeIcon icon={Icon} className="h-4 w-4 text-green-500" aria-label={title} />
-        <div className="text-base font-medium text-black">{title}</div>
+        <div className="text-sm sm:text-base font-medium text-black">{title}</div>
       </div>
-      <div className="mt-1 text-xl font-semibold text-green-600">{value}</div>
+      <div className="mt-1 text-lg sm:text-xl font-semibold text-green-600">{value}</div>
     </div>
   );
 }
@@ -25,12 +25,12 @@ function SummaryCard({ title, value, icon: Icon }: { title: string; value: strin
 // StatCard component from dashboard.tsx
 function StatCard({ title, value, icon: Icon }: { title: string; value: string; icon: any }) {
   return (
-    <div className="rounded-xl border border-green-300 bg-white p-3 sm:p-3">
+    <div className="rounded-xl border border-green-300 bg-white p-3 sm:p-4">
       <div className="flex items-center gap-1 sm:gap-2">
         <FontAwesomeIcon icon={Icon} className="h-4 w-4 sm:h-4 sm:w-4 text-green-500" aria-label={title} />
-        <div className="text-xs sm:text-base font-medium text-black leading-tight">{title}</div>
+        <div className="text-xs sm:text-sm font-medium text-black leading-tight">{title}</div>
       </div>
-      <div className="mt-1 sm:mt-1 text-xl sm:text-xl font-semibold text-green-600">{value}</div>
+      <div className="mt-1 sm:mt-1 text-lg sm:text-xl font-semibold text-green-600">{value}</div>
     </div>
   );
 }
@@ -86,9 +86,9 @@ export default function CbrDashboard() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <DashboardHeader title="Dashboard Caberawit" bgColor="bg-green-500" />
-      <div className="px-10 py-6 grow pl-[250px]">
+      <div className="px-4 py-6 grow md:pl-64">
         <section className="space-y-6 text-justify fade-in">
-          <h2 className="text-2xl font-bold text-gray-900 inline-block border-b-2 border-green-500 pb-1">Statistik Caberawit</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 inline-block border-b-2 border-green-500 pb-1">Statistik Caberawit</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 fade-in-stagger">
             {/* Card Jumlah Caberawit */}
             <SummaryCard title="Jumlah Caberawit" value={stats.totalCbr.toString()} icon={faUsers} />

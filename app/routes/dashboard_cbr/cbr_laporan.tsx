@@ -13,7 +13,7 @@ export default function CbrLaporan() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <DashboardHeader title="Laporan" bgColor="bg-green-500" />
-      <div className="px-6 py-6 grow pl-[250px]">
+      <div className="px-6 py-6 grow md:pl-64">
         <p className='text-black'>Selamat datang di halaman Laporan Caberawit.</p>
       </div>
     </div>

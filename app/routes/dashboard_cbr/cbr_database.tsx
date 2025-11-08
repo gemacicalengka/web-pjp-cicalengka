@@ -290,18 +290,18 @@ export default function CbrDatabase() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <DashboardHeader title="Database Caberawit" bgColor="bg-green-500" />
-      <div className="px-6 py-6 grow pl-[250px]">
+      <div className="px-6 py-6 grow md:pl-64">
         <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-bold text-gray-900">Data Caberawit</h2>
-            <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Data Caberawit</h2>
+            <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
               <button
                 onClick={exportToExcel} // Mengubah dari exportPdf ke exportToExcel
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-400"
+                className="inline-flex items-center justify-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-400 w-full sm:w-auto"
               >
                 Export Data
               </button>
-              <Link to="/dashboard_cbr/crud_cbr/tambah_cbr" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+              <Link to="/dashboard_cbr/crud_cbr/tambah_cbr" className="inline-flex items-center justify-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 w-full sm:w-auto">
                 Tambah Data
               </Link>
             </div>
@@ -309,40 +309,40 @@ export default function CbrDatabase() {
 
           {/* Search and Action Buttons */}
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 fade-in-stagger mb-4">
-            <div className="flex flex-wrap items-end gap-3">
-              <div>
+            <div className="flex flex-wrap items-end gap-3 w-full">
+              <div className="w-full sm:flex-1">
                 <input
                   value={searchNama}
                   onChange={(e) => setSearchNama(e.target.value)}
                   placeholder="Cari Nama"
-                  className="mt-1 w-full sm:w-55 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400"
+                  className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 min-w-0"
                 />
               </div>
-              <div>
+              <div className="w-full sm:flex-1">
                 <input
                   value={searchKelompok}
                   onChange={(e) => setSearchKelompok(e.target.value)}
                   placeholder="Cari Kelompok"
-                  className="mt-1 w-full sm:w-55 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400"
+                  className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 min-w-0"
                 />
               </div>
-              <div>
+              <div className="w-full sm:flex-1">
                 <input
                   value={searchKelasSekolah}
                   onChange={(e) => setSearchKelasSekolah(e.target.value)}
                   placeholder="Cari Jenjang Sekolah"
-                  className="mt-1 w-full sm:w-55 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400"
+                  className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 min-w-0"
                 />
               </div>
-              <div>
+              <div className="w-full sm:flex-1">
                 <input
                   value={searchKelasNgaji}
                   onChange={(e) => setSearchKelasNgaji(e.target.value)}
                   placeholder="Cari Kelas Ngaji"
-                  className="mt-1 w-full sm:w-55 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400"
+                  className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 min-w-0"
                 />
               </div>
-              <div>
+              <div className="w-full sm:w-auto">
                 <button
                   onClick={() => {
                     setSearchNama('');
@@ -350,7 +350,7 @@ export default function CbrDatabase() {
                     setSearchKelasSekolah('');
                     setSearchKelasNgaji('');
                   }} // Meng-clear pencarian saat ini
-                  className="mt-1 w-full sm:w-20 text-center px-3 py-2 text-white bg-sky-500 hover:bg-sky-600 rounded-md border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-400">
+                  className="mt-1 w-full sm:w-auto text-center px-3 py-2 text-white bg-sky-500 hover:bg-sky-600 rounded-md border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-400">
                   Clear
                 </button>
               </div>
@@ -365,28 +365,28 @@ export default function CbrDatabase() {
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-100">
                     <tr>
-                      <th scope="col" className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">No.</th>
-                      <th scope="col" className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
-                      <th scope="col" className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Jenis Kelamin</th>
-                      <th scope="col" className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal Lahir</th>
-                      <th scope="col" className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Kelompok</th>
-                      <th scope="col" className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Jenjang Sekolah</th>
-                      <th scope="col" className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Kelas Ngaji</th>
-                      <th scope="col" className="relative px-4 py-3"><span className="sr-only">Aksi</span></th>
+                      <th scope="col" className="px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider sm:px-4 sm:py-3 sm:text-sm">No.</th>
+                      <th scope="col" className="px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider sm:px-4 sm:py-3 sm:text-sm">Nama</th>
+                      <th scope="col" className="px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider sm:px-4 sm:py-3 sm:text-sm">Jenis Kelamin</th>
+                      <th scope="col" className="px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider sm:px-4 sm:py-3 sm:text-sm">Tanggal Lahir</th>
+                      <th scope="col" className="px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider sm:px-4 sm:py-3 sm:text-sm">Kelompok</th>
+                      <th scope="col" className="px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider sm:px-4 sm:py-3 sm:text-sm">Jenjang Sekolah</th>
+                      <th scope="col" className="px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider sm:px-4 sm:py-3 sm:text-sm">Kelas Ngaji</th>
+                      <th scope="col" className="relative px-2 py-2 sm:px-4 sm:py-3"><span className="sr-only">Aksi</span></th>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
                     {cbrData.map((data, index) => (
                       <tr key={data.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}>
-                        <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-black text-center">{((currentPage - 1) * itemsPerPage) + index + 1}</td>
-                        <td className="px-4 py-3 text-sm font-medium text-black">{formatNameForTable(data.nama_cbr)}</td>
-                        <td className="px-4 py-3 whitespace-nowrap text-sm text-black text-center">{data.jenis_kelamin_cbr}</td>
-                        <td className="px-4 py-3 whitespace-nowrap text-sm text-black text-center">{formatDisplayDate(data.tgl_lahir_cbr)}</td>
-                        <td className="px-4 py-3 whitespace-nowrap text-sm text-black text-center">{data.kelompok_cbr}</td>
-                        <td className="px-4 py-3 whitespace-nowrap text-sm text-black text-center">{data.kelas_sekolah_cbr}</td>
-                        <td className="px-4 py-3 whitespace-nowrap text-sm text-black text-center">{getKelasNgaji(data.kelas_sekolah_cbr)}</td>
-                        <td className="px-4 py-3 whitespace-nowrap text-right text-sm font-medium">
-                          <Link to={`/dashboard_cbr/crud_cbr/edit_cbr/${data.id}`} className="text-indigo-600 hover:text-indigo-900 mr-4">Edit</Link>
+                        <td className="px-2 py-2 whitespace-nowrap text-xs font-medium text-black text-center sm:px-4 sm:py-3 sm:text-sm">{((currentPage - 1) * itemsPerPage) + index + 1}</td>
+                        <td className="px-2 py-2 text-xs font-medium text-black sm:px-4 sm:py-3 sm:text-sm">{formatNameForTable(data.nama_cbr)}</td>
+                        <td className="px-2 py-2 whitespace-nowrap text-xs text-black text-center sm:px-4 sm:py-3 sm:text-sm">{data.jenis_kelamin_cbr}</td>
+                        <td className="px-2 py-2 whitespace-nowrap text-xs text-black text-center sm:px-4 sm:py-3 sm:text-sm">{formatDisplayDate(data.tgl_lahir_cbr)}</td>
+                        <td className="px-2 py-2 text-xs text-black text-center sm:px-4 sm:py-3 sm:text-sm">{data.kelompok_cbr}</td>
+                        <td className="px-2 py-2 text-xs text-black text-center sm:px-4 sm:py-3 sm:text-sm">{data.kelas_sekolah_cbr}</td>
+                        <td className="px-2 py-2 text-xs text-black text-center sm:px-4 sm:py-3 sm:text-sm">{getKelasNgaji(data.kelas_sekolah_cbr)}</td>
+                        <td className="px-2 py-2 text-right text-xs font-medium sm:px-4 sm:py-3 sm:text-sm">
+                          <Link to={`/dashboard_cbr/crud_cbr/edit_cbr/${data.id}`} className="text-indigo-600 hover:text-indigo-900 mr-2 sm:mr-4">Edit</Link>
                           <button onClick={() => handleDelete(data.id!)} className="text-red-600 hover:text-red-900">Hapus</button>
                         </td>
                       </tr>
@@ -397,18 +397,18 @@ export default function CbrDatabase() {
 
               {/* Pagination UI */}
               <div className="flex flex-col md:flex-row justify-between items-center mt-4 gap-2">
-                <div className="flex items-center gap-2">
+                <div className="flex flex-col sm:flex-row items-center gap-2">
                   <span className="text-sm text-gray-700">Tampilkan:</span>
                   <select
                     value={itemsPerPage}
                     onChange={handleItemsPerPageChange}
-                    className="text-black px-3 py-1 border border-gray-300 rounded-md text-sm"
+                    className="text-black px-2 py-1 border border-gray-300 rounded-md text-sm"
                   >
                     <option value={10}>10</option>
                     <option value={20}>20</option>
                     <option value={50}>50</option>
                   </select>
-                  <span className="text-sm text-gray-700">
+                  <span className="text-sm text-gray-700 text-center sm:text-left">
                     Menampilkan {((currentPage - 1) * itemsPerPage) + 1} - {Math.min(currentPage * itemsPerPage, totalItems)} dari {totalItems} data
                   </span>
                 </div>
