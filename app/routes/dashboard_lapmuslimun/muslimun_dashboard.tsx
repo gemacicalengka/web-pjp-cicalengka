@@ -1,5 +1,13 @@
 import React from 'react';
 import DashboardHeader from '~/components/DashboardHeader';
+import type { MetaArgs } from "react-router";
+
+export function meta({}: MetaArgs) {
+  return [
+    { title: "Dashboard Lapmuslimun" },
+    { name: "description", content: "Dashboard Laporan Musyawarah Lima Unsur" },
+  ];
+}
 
 export default function MuslimunDashboard() {
   return (
