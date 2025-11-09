@@ -7,15 +7,15 @@ import type { JSX } from "react";
 import { calculateCbrStatistics } from './cbr_dashboard_utils';
 import type { CbrStatistics } from './cbr_dashboard_utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsers, faMars, faVenus, faChartBar, faBookOpen } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faMars, faVenus, faChartBar, faBookOpen, faUsersGear } from '@fortawesome/free-solid-svg-icons';
 
 // SummaryCard component from dashboard.tsx
 function SummaryCard({ title, value, icon: Icon }: { title: string; value: string; icon: any }) {
   return (
     <div className="rounded-xl border border-green-300 bg-white p-3 sm:p-4">
-      <div className="flex items-center gap-2">
-        <FontAwesomeIcon icon={Icon} className="h-4 w-4 text-green-500" aria-label={title} />
-        <div className="text-sm sm:text-base font-medium text-black">{title}</div>
+      <div className="flex items-center gap-1 sm:gap-2">
+        <FontAwesomeIcon icon={Icon} className="h-4 w-4 sm:h-4 sm:w-4 text-green-500" aria-label={title} />
+        <div className="text-sm sm:text-base font-medium text-black leading-tight">{title}</div>
       </div>
       <div className="mt-1 text-lg sm:text-xl font-semibold text-green-600">{value}</div>
     </div>
@@ -28,7 +28,7 @@ function StatCard({ title, value, icon: Icon }: { title: string; value: string; 
     <div className="rounded-xl border border-green-300 bg-white p-3 sm:p-4">
       <div className="flex items-center gap-1 sm:gap-2">
         <FontAwesomeIcon icon={Icon} className="h-4 w-4 sm:h-4 sm:w-4 text-green-500" aria-label={title} />
-        <div className="text-xs sm:text-sm font-medium text-black leading-tight">{title}</div>
+        <div className="text-sm sm:text-base font-medium text-black leading-tight">{title}</div>
       </div>
       <div className="mt-1 sm:mt-1 text-lg sm:text-xl font-semibold text-green-600">{value}</div>
     </div>
@@ -86,140 +86,157 @@ export default function CbrDashboard() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <DashboardHeader title="Dashboard Caberawit" bgColor="bg-green-500" />
-      <div className="px-4 py-6 grow md:pl-64">
+      <div className="px-6 py-6 grow md:pl-64">
         <section className="space-y-6 text-justify fade-in">
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 inline-block border-b-2 border-green-500 pb-1">Statistik Caberawit</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 fade-in-stagger">
-            {/* Card Jumlah Caberawit */}
-            <SummaryCard title="Jumlah Caberawit" value={stats.totalCbr.toString()} icon={faUsers} />
-            <StatCard title="Laki-laki" value={stats.totalMaleCbr.toString()} icon={faMars} />
-            <StatCard title="Perempuan" value={stats.totalFemaleCbr.toString()} icon={faVenus} />
-          </div>
-
-          {/* Separator Line */}
-          <div className="border-t border-black"></div>
-
-          {/* Card Jumlah Kelas PAUD */}
-          <h2 className="text-2xl font-bold text-gray-900 inline-block border-b-2 border-green-500 pb-1">Statistik Kelas PAUD</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 fade-in-stagger">
-            <SummaryCard title="Jumlah Kelas PAUD/TK/RA" value={stats.totalPaud.toString()} icon={faChartBar} />
+          {/* Data Caberawit */}
+          <h2 className="text-2xl font-bold text-gray-900 inline-block border-b-2 border-green-500 pb-1">Detail Data Caberawit</h2>
+          {/* Card Detail Data Caberawit */}
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 fade-in-stagger">
             <div className="rounded-xl border border-green-300 bg-white p-3">
               <div className="flex items-center gap-2 mb-1">
-                <FontAwesomeIcon icon={faChartBar} className="h-4 w-4 text-green-500" aria-label="Belum Sekolah" />
-                <div className="text-base font-medium text-gray-900">Belum Sekolah</div>
+                <FontAwesomeIcon icon={faUsers} className="h-4 w-4 text-green-500" aria-label="Jumlah Caberawit" />
+                <div className="text-base font-medium text-gray-900">Jumlah Caberawit</div>
               </div>
-              <div className="text-xl font-semibold text-green-600 mb-2">{stats.belumSekolahData.length}</div>
-              <div className="text-sm text-gray-700">
-                <p>Laki-laki: {stats.belumSekolahMale} | <span>Perempuan: {stats.belumSekolahFemale}</span></p>
+              <div className="text-xl font-semibold text-green-600 mb-2">{stats.totalCbr.toString()}
+              <p className="text-sm font-normal text-gray-700">
+                <span> ( Laki-laki: {stats.totalMaleCbr.toString()} | </span>
+                <span>Perempuan: {stats.totalFemaleCbr.toString()} )</span>
+              </p>
               </div>
             </div>
-            <div className="rounded-xl border border-green-300 bg-white p-3">
-              <div className="flex items-center gap-2 mb-1">
-                <FontAwesomeIcon icon={faChartBar} className="h-4 w-4 text-green-500" aria-label="PAUD" />
-                <div className="text-base font-medium text-gray-900">PAUD</div>
-              </div>
-              <div className="text-xl font-semibold text-green-600 mb-2">{stats.paudOnlyData.length}</div>
-              <div className="text-sm text-gray-700">
-                <p>Laki-laki: {stats.paudOnlyMale} | <span>Perempuan: {stats.paudOnlyFemale}</span></p>
-              </div>
-            </div>
-            <div className="rounded-xl border border-green-300 bg-white p-3">
-              <div className="flex items-center gap-2 mb-1">
-                <FontAwesomeIcon icon={faChartBar} className="h-4 w-4 text-green-500" aria-label="TK/RA" />
-                <div className="text-base font-medium text-gray-900">TK/RA</div>
-              </div>
-              <div className="text-xl font-semibold text-green-600 mb-2">{stats.tkRaData.length}</div>
-              <div className="text-sm text-gray-700">
-                <p>Laki-laki: {stats.tkRaMale} | <span>Perempuan: {stats.tkRaFemale}</span></p>
-              </div>
-            </div>
-          </div>
 
-          {/* Separator Line */}
-          <div className="border-t border-black"></div>
-
-          {/* Card Jumlah Kelas A */}
-          <h2 className="text-2xl font-bold text-gray-900 inline-block border-b-2 border-green-500 pb-1">Statistik Kelas A</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 fade-in-stagger">
-            <SummaryCard title="Total Kelas A" value={stats.totalKelasA.toString()} icon={faBookOpen} />
             <div className="rounded-xl border border-green-300 bg-white p-3">
               <div className="flex items-center gap-2 mb-1">
-                <FontAwesomeIcon icon={faBookOpen} className="h-4 w-4 text-green-500" aria-label="Kelas 1" />
-                <div className="text-base font-medium text-gray-900">Kelas 1</div>
+                <FontAwesomeIcon icon={faUsers} className="h-4 w-4 text-green-500" aria-label="Jumlah PAUD/TK/RA" />
+                <div className="text-base font-medium text-gray-900">Jumlah PAUD/TK/RA</div>
               </div>
-              <div className="text-xl font-semibold text-green-600 mb-2">{stats.kelas1Data.length}</div>
-              <div className="text-sm text-gray-700">
-                <p>Laki-laki: {stats.kelas1Male} | <span>Perempuan: {stats.kelas1Female}</span></p>
+              <div className="text-xl font-semibold text-green-600 mb-2">{stats.totalPaud.toString()}
+              <p className="text-sm font-normal text-gray-700">
+                <span> ( Laki-laki: {stats.belumSekolahMale + stats.paudOnlyMale + stats.tkRaMale} | </span>
+                <span>Perempuan: {stats.belumSekolahFemale + stats.paudOnlyFemale + stats.tkRaFemale} )</span>
+              </p>
               </div>
             </div>
+
             <div className="rounded-xl border border-green-300 bg-white p-3">
               <div className="flex items-center gap-2 mb-1">
-                <FontAwesomeIcon icon={faBookOpen} className="h-4 w-4 text-green-500" aria-label="Kelas 2" />
-                <div className="text-base font-medium text-gray-900">Kelas 2</div>
+                <FontAwesomeIcon icon={faUsers} className="h-4 w-4 text-green-500" aria-label="Jumlah Kelas A" />
+                <div className="text-base font-medium text-gray-900">Jumlah Kelas A</div>
               </div>
-              <div className="text-xl font-semibold text-green-600 mb-2">{stats.kelas2Data.length}</div>
-              <div className="text-sm text-gray-700">
-                <p>Laki-laki: {stats.kelas2Male} | <span>Perempuan: {stats.kelas2Female}</span></p>
+              <div className="text-xl font-semibold text-green-600 mb-2">{stats.totalKelasA.toString()}
+              <p className="text-sm font-normal text-gray-700">
+                <span> ( Laki-laki: {stats.kelas1Male + stats.kelas2Male} | </span>
+                <span>Perempuan: {stats.kelas1Female + stats.kelas2Female} )</span>
+              </p>
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-green-300 bg-white p-3">
+              <div className="flex items-center gap-2 mb-1">
+                <FontAwesomeIcon icon={faUsers} className="h-4 w-4 text-green-500" aria-label="Jumlah Kelas B" />
+                <div className="text-base font-medium text-gray-900">Jumlah Kelas B</div>
+              </div>
+              <div className="text-xl font-semibold text-green-600 mb-2">{stats.totalKelasB.toString()}
+              <p className="text-sm font-normal text-gray-700">
+                <span> ( Laki-laki: {stats.kelas3Male + stats.kelas4Male} | </span>
+                <span>Perempuan: {stats.kelas3Female + stats.kelas4Female} )</span>
+              </p>
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-green-300 bg-white p-3">
+              <div className="flex items-center gap-2 mb-1">
+                <FontAwesomeIcon icon={faUsers} className="h-4 w-4 text-green-500" aria-label="Jumlah Kelas C" />
+                <div className="text-base font-medium text-gray-900">Jumlah Kelas C</div>
+              </div>
+              <div className="text-xl font-semibold text-green-600 mb-2">{stats.totalKelasC.toString()}
+              <p className="text-sm font-normal text-gray-700">
+                <span> ( Laki-laki: {stats.kelas5Male + stats.kelas6Male} | </span>
+                <span>Perempuan: {stats.kelas5Female + stats.kelas6Female} )</span>
+              </p>
               </div>
             </div>
           </div>
 
           {/* Separator Line */}
-          <div className="border-t border-black"></div>
+          {/* <div className="border-t border-black"></div> */}
 
-          {/* Card Jumlah Kelas B */}
-          <h2 className="text-2xl font-bold text-gray-900 inline-block border-b-2 border-green-500 pb-1">Statistik Kelas B</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 fade-in-stagger">
-            <SummaryCard title="Total Kelas B" value={stats.totalKelasB.toString()} icon={faBookOpen} />
-            <div className="rounded-xl border border-green-300 bg-white p-3">
-              <div className="flex items-center gap-2 mb-1">
-                <FontAwesomeIcon icon={faBookOpen} className="h-4 w-4 text-green-500" aria-label="Kelas 3" />
-                <div className="text-base font-medium text-gray-900">Kelas 3</div>
-              </div>
-              <div className="text-xl font-semibold text-green-600 mb-2">{stats.kelas3Data.length}</div>
-              <div className="text-sm text-gray-700">
-                <p>Laki-laki: {stats.kelas3Male} | <span>Perempuan: {stats.kelas3Female}</span></p>
-              </div>
-            </div>
-            <div className="rounded-xl border border-green-300 bg-white p-3">
-              <div className="flex items-center gap-2 mb-1">
-                <FontAwesomeIcon icon={faBookOpen} className="h-4 w-4 text-green-500" aria-label="Kelas 4" />
-                <div className="text-base font-medium text-gray-900">Kelas 4</div>
-              </div>
-              <div className="text-xl font-semibold text-green-600 mb-2">{stats.kelas4Data.length}</div>
-              <div className="text-sm text-gray-700">
-                <p>Laki-laki: {stats.kelas4Male} | <span>Perempuan: {stats.kelas4Female}</span></p>
-              </div>
-            </div>
-          </div>
+          {/* Tabel Detail Data Caberawit */}
+          <div className="overflow-x-auto">
+            <table className="min-w-auto divide-y divide-green-500 border border-green-500">
+              <thead className="bg-green-100">
+                <tr className="text-black uppercase">
+                  <th scope="col" className="px-2 py-2 text-center text-xs font-bold tracking-wider sm:px-4 sm:py-3 sm:text-sm">Jenjang Sekolah</th>
+                  <th scope="col" className="px-2 py-2 text-center text-xs font-bold tracking-wider sm:px-4 sm:py-3 sm:text-sm">Laki-laki</th>
+                  <th scope="col" className="px-2 py-2 text-center text-xs font-bold tracking-wider sm:px-4 sm:py-3 sm:text-sm">Perempuan</th>
+                </tr>
+              </thead>
 
-          {/* Separator Line */}
-          <div className="border-t border-black"></div>
+              <tbody className="bg-white divide-y divide-green-500">  
+                {/* Belum Sekolah */}
+                <tr className="text-green-500 uppercase">
+                  <th scope="row" className="px-2 py-2 text-xs font-medium text-center tracking-wider sm:px-4 sm:py-3 sm:text-sm">Belum Sekolah</th>
+                  <td className="px-2 py-2 text-xs text-center font-medium sm:px-4 sm:py-3 sm:text-sm">{stats.belumSekolahMale}</td>
+                  <td className="px-2 py-2 text-xs text-center font-medium sm:px-4 sm:py-3 sm:text-sm">{stats.belumSekolahFemale}</td>
+                </tr>
 
-          {/* Card Jumlah Kelas C */}
-          <h2 className="text-2xl font-bold text-gray-900 inline-block border-b-2 border-green-500 pb-1">Statistik Kelas C</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 fade-in-stagger">
-            <SummaryCard title="Total Kelas C" value={stats.totalKelasC.toString()} icon={faBookOpen} />
-            <div className="rounded-xl border border-green-300 bg-white p-3">
-              <div className="flex items-center gap-2 mb-1">
-                <FontAwesomeIcon icon={faBookOpen} className="h-4 w-4 text-green-500" aria-label="Kelas 5" />
-                <div className="text-base font-medium text-gray-900">Kelas 5</div>
-              </div>
-              <div className="text-xl font-semibold text-green-600 mb-2">{stats.kelas5Data.length}</div>
-              <div className="text-sm text-gray-700">
-                <p>Laki-laki: {stats.kelas5Male} | <span>Perempuan: {stats.kelas5Female}</span></p>
-              </div>
-            </div>
-            <div className="rounded-xl border border-green-300 bg-white p-3">
-              <div className="flex items-center gap-2 mb-1">
-                <FontAwesomeIcon icon={faBookOpen} className="h-4 w-4 text-green-500" aria-label="Kelas 6" />
-                <div className="text-base font-medium text-gray-900">Kelas 6</div>
-              </div>
-              <div className="text-xl font-semibold text-green-600 mb-2">{stats.kelas6Data.length}</div>
-              <div className="text-sm text-gray-700">
-                <p>Laki-laki: {stats.kelas6Male} | <span>Perempuan: {stats.kelas6Female}</span></p>
-              </div>
-            </div>
+                {/* Kelas  PAUD*/}
+                <tr className="bg-green-100 text-black uppercase">
+                  <th scope="row" className="px-2 py-2 text-xs font-medium text-center tracking-wider sm:px-4 sm:py-3 sm:text-sm">PAUD</th>
+                  <td className="px-2 py-2 text-xs text-center font-medium sm:px-4 sm:py-3 sm:text-sm">{stats.paudOnlyMale}</td>
+                  <td className="px-2 py-2 text-xs text-center font-medium sm:px-4 sm:py-3 sm:text-sm">{stats.paudOnlyFemale}</td>
+                </tr>
+
+                {/* Kelas  TK/RA*/}
+                <tr className="text-green-500 uppercase">
+                  <th scope="row" className="px-2 py-2 text-xs font-medium text-center tracking-wider sm:px-4 sm:py-3 sm:text-sm">TK/RA</th>
+                  <td className="px-2 py-2 text-xs text-center font-medium sm:px-4 sm:py-3 sm:text-sm">{stats.tkRaMale}</td>
+                  <td className="px-2 py-2 text-xs text-center font-medium sm:px-4 sm:py-3 sm:text-sm">{stats.tkRaFemale}</td>
+                </tr>
+
+                {/* Kelas  1*/}
+                <tr className="bg-green-100 text-black uppercase">
+                  <th scope="row" className="px-2 py-2 text-xs font-medium text-center tracking-wider sm:px-4 sm:py-3 sm:text-sm">Kelas 1</th>
+                  <td className="px-2 py-2 text-xs text-center font-medium sm:px-4 sm:py-3 sm:text-sm">{stats.kelas1Male}</td>
+                  <td className="px-2 py-2 text-xs text-center font-medium sm:px-4 sm:py-3 sm:text-sm">{stats.kelas1Female}</td>
+                </tr>
+
+                {/* Kelas  2*/}
+                <tr className="text-green-500 uppercase">
+                  <th scope="row" className="px-2 py-2 text-xs font-medium text-center tracking-wider sm:px-4 sm:py-3 sm:text-sm">Kelas 2</th>
+                  <td className="px-2 py-2 text-xs text-center font-medium sm:px-4 sm:py-3 sm:text-sm">{stats.kelas2Male}</td>
+                  <td className="px-2 py-2 text-xs text-center font-medium sm:px-4 sm:py-3 sm:text-sm">{stats.kelas2Female}</td>
+                </tr>
+
+                {/* Kelas  3*/}
+                <tr className="bg-green-100 text-black uppercase">
+                  <th scope="row" className="px-2 py-2 text-xs font-medium text-center tracking-wider sm:px-4 sm:py-3 sm:text-sm">Kelas 3</th>
+                  <td className="px-2 py-2 text-xs text-center font-medium sm:px-4 sm:py-3 sm:text-sm">{stats.kelas3Male}</td>
+                  <td className="px-2 py-2 text-xs text-center font-medium sm:px-4 sm:py-3 sm:text-sm">{stats.kelas3Female}</td>
+                </tr>
+
+                {/* Kelas  4*/}
+                <tr className="text-green-500 uppercase">
+                  <th scope="row" className="px-2 py-2 text-xs font-medium text-center tracking-wider sm:px-4 sm:py-3 sm:text-sm">Kelas 4</th>
+                  <td className="px-2 py-2 text-xs text-center font-medium sm:px-4 sm:py-3 sm:text-sm">{stats.kelas4Male}</td>
+                  <td className="px-2 py-2 text-xs text-center font-medium sm:px-4 sm:py-3 sm:text-sm">{stats.kelas4Female}</td>
+                </tr>
+
+                {/* Kelas  5*/}
+                <tr className="bg-green-100 text-black uppercase">
+                  <th scope="row" className="px-2 py-2 text-xs font-medium text-center tracking-wider sm:px-4 sm:py-3 sm:text-sm">Kelas 5</th>
+                  <td className="px-2 py-2 text-xs text-center font-medium sm:px-4 sm:py-3 sm:text-sm">{stats.kelas5Male}</td>
+                  <td className="px-2 py-2 text-xs text-center font-medium sm:px-4 sm:py-3 sm:text-sm">{stats.kelas5Female}</td>
+                </tr>
+
+                {/* Kelas  6*/}
+                <tr className="text-green-500 uppercase">
+                  <th scope="row" className="px-2 py-2 text-xs font-medium text-center tracking-wider sm:px-4 sm:py-3 sm:text-sm">Kelas 6</th>
+                  <td className="px-2 py-2 text-xs text-center font-medium sm:px-4 sm:py-3 sm:text-sm">{stats.kelas6Male}</td>
+                  <td className="px-2 py-2 text-xs text-center font-medium sm:px-4 sm:py-3 sm:text-sm">{stats.kelas6Female}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </section>
       </div>
